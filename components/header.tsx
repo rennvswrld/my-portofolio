@@ -127,7 +127,6 @@ export default function Header() {
                   {languages.map((l) => (
                     <button
                       key={l.code}
-                      {/* FIX BOLO: Ditambahkan 'as any' biar lolos validasi tipe di desktop */}
                       onClick={() => { setLang(l.code as any); setIsLangOpen(false); }}
                       className={cn(
                         "flex items-center justify-between px-4 py-2.5 rounded-xl text-sm transition-all",
@@ -169,7 +168,6 @@ export default function Header() {
                 {languages.map((l) => (
                   <button 
                     key={l.code} 
-                    {/* FIX BOLO: Ditambahkan 'as any' juga di mobile view */}
                     onClick={() => { setLang(l.code as any); setIsMobileMenuOpen(false); }} 
                     className={cn("px-2 py-2 rounded-lg text-[10px] font-bold uppercase border transition-all text-center", lang === l.code ? "bg-[#00d4ff] text-black border-[#00d4ff]" : "bg-white/5 text-gray-400 border-white/10")}
                   >
