@@ -3,23 +3,24 @@
 import React, { createContext, useContext, useState } from 'react';
 import { translations, Language } from '@/lib/translations';
 
+// Kita set t sebagai 'any' agar TypeScript tidak rewel mengecek satu-satu
 type LanguageContextType = {
   lang: Language;
   setLang: (lang: Language) => void;
-  t: any; // Bypass strict typing untuk translations
+  currentLanguage: Language;
+  t: any; 
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLang] = useState<Language>('id');
-  
-  // BYPASS: Paksa TypeScript untuk tidak mengecek tipe data di baris ini
-  // @ts-ignore
-  const t = translations[lang] || translations['id']; // Fallback aman ke 'id'
+
+  // BYPASS SAKTI: Paksa TypeScript baca sebagai any, dan kasih default 'id' kalau bahasa belum ada
+  const t = (translations as any)[lang] || translations['id'];
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>
+    <LanguageContext.Provider value={{ lang, setLang, currentLanguage: lang, t }}>
       {children}
     </LanguageContext.Provider>
   );
