@@ -88,7 +88,7 @@ export default function Contact() {
                       <p className="text-gray-500 text-sm">Rendi Saputra</p>
                    </div>
                    <a 
-                     href="https://linkedin.com/in/rendisaputra" // Ganti dengan linkmu
+                     href="https://www.linkedin.com/in/rendi-saputra-020aa4340/" // Ganti dengan linkmu
                      target="_blank"
                      className="flex items-center justify-between w-full py-3 px-4 bg-white/5 hover:bg-[#00d4ff]/10 rounded-xl text-xs font-bold text-gray-300 hover:text-[#00d4ff] transition-all"
                    >

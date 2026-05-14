@@ -57,7 +57,7 @@ export default function Footer() {
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/rennvswrld", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com/in/rendisaputra", label: "LinkedIn" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/rendi-saputra-020aa4340/", label: "LinkedIn" },
     { icon: Instagram, href:"https://www.instagram.com/rennvswrld?igsh=MTh1YXBtMDNscTg3MA==", label: "Instagram" },
     { icon: Twitter, href: "#", label: "Twitter" },
   ]
