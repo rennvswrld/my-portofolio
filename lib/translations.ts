@@ -1,4 +1,4 @@
-export type Language = 'id' | 'en' | 'cn' | 'kr' | 'jp' | 'th' | 'vn' | 'kh' | 'ru';
+export type Language = 'id' | 'en' | 'jp';
 
 export const languages = [
   { code: 'id', label: 'Indonesia', native: 'Indonesia' },
