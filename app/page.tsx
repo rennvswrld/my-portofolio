@@ -1,3 +1,4 @@
+// rendi ganteng
 import { Suspense } from "react"
 import dynamic from "next/dynamic"
 import Header from "@/components/header"
