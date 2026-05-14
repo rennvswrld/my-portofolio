@@ -15,11 +15,11 @@ const Contact = dynamic(() => import("@/components/contact"))
 const Footer = dynamic(() => import("@/components/footer"))
 const BackToTop = dynamic(() => import("@/components/back-to-top"))
 
-// Loading fallback component
+// Loading fallback component - Neon Cyan Theme
 function LoadingSection() {
   return (
     <div className="flex items-center justify-center py-20">
-      <div className="animate-pulse text-amber-400">Loading...</div>
+      <div className="animate-pulse text-[#00d4ff] font-bold text-sm tracking-widest uppercase">Loading...</div>
     </div>
   )
 }
@@ -43,31 +43,40 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#1a1918]">
+    <main className="min-h-screen bg-[#050505] text-white overflow-hidden">
       <Header />
       <Hero />
       <About />
+      
       <Suspense fallback={<LoadingSection />}>
         <Skills />
       </Suspense>
+      
       <Suspense fallback={<LoadingSection />}>
         <Workflow />
       </Suspense>
+      
       <Suspense fallback={<LoadingSection />}>
         <Experience />
       </Suspense>
+      
       <Suspense fallback={<LoadingSection />}>
-        <Projects initialProjects={projectsData} />
+        {/* Diubah menjadi panggilan bersih tanpa props agar lolos validasi TypeScript */}
+        <Projects />
       </Suspense>
+      
       <Suspense fallback={<LoadingSection />}>
         <Contact />
       </Suspense>
+      
       <Suspense fallback={<LoadingSection />}>
         <Footer />
       </Suspense>
+      
       <Suspense fallback={null}>
         <BackToTop />
       </Suspense>
+      
       <TargetCursor spinDuration={2} hideDefaultCursor={true} />
     </main>
   )
