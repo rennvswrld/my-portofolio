@@ -1,0 +1,24 @@
+{
+  "name": "Gusti Gibran Portfolio",
+  "short_name": "Gibran Portfolio",
+  "description": "Portfolio of Gusti Gibran - UI/UX Designer & Front-end Developer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1918",
+  "theme_color": "#fbbf24",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/saya-versi-ai.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["portfolio", "personal", "developer", "designer"]
+}
