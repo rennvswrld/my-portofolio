@@ -9,21 +9,52 @@ interface Song {
   src: string
 }
 
+// PLAYLIST SUDAH DISINKRONKAN DENGAN FOLDER PUBLIC/SONGS
 const PLAYLIST: Song[] = [
   {
-    title: "About You Indonesia Version Tentangmu",
-    artist: "Coverin",
-    src: "/songs/About You Indonesia Version Tentangmu - Coverin - Cover Indonesia Version.mp3",
+    title: "Champagne Supernova",
+    artist: "Oasis",
+    src: "/songs/Champagne Supernova (Remastered).mp3",
   },
   {
-    title: "Narcissist",
-    artist: "No Rome ft. The 1975",
-    src: "/songs/No Rome ft. The 1975 - Narcissist (Official Video) - NoRomeVEVO.mp3",
+    title: "Cheating on You",
+    artist: "Charlie Puth",
+    src: "/songs/Charlie Puth - Cheating on You.mp3",
   },
   {
-    title: "Happiness",
-    artist: "The 1975",
-    src: "/songs/The 1975 - Happiness (Official Video) - The1975VEVO.mp3",
+    title: "Tumblr Girls",
+    artist: "G-Eazy",
+    src: "/songs/G-Eazy - Tumblr Girls.mp3",
+  },
+  {
+    title: "Perfect Strangers",
+    artist: "Jonas Blue ft. JP Cooper",
+    src: "/songs/Jonas Blue - Perfect Strangers ft. JP Cooper.mp3",
+  },
+  {
+    title: "Baby",
+    artist: "Justin Bieber ft. Ludacris",
+    src: "/songs/Justin Bieber - Baby ft. Ludacris.mp3",
+  },
+  {
+    title: "Multo",
+    artist: "Unknown Artist",
+    src: "/songs/Multo.mp3",
+  },
+  {
+    title: "Cheerleader",
+    artist: "OMI",
+    src: "/songs/OMI - Cheerleader.mp3",
+  },
+  {
+    title: "Cigarettes After Sex",
+    artist: "Silver Sable",
+    src: "/songs/Silver Sable - Cigarettes After Sex.mp3",
+  },
+  {
+    title: "Sunsetz",
+    artist: "Cigarettes After Sex",
+    src: "/songs/Sunsetz - Cigarettes After Sex.mp3",
   },
   {
     title: "I'm In Love With You",
@@ -31,12 +62,12 @@ const PLAYLIST: Song[] = [
     src: "/songs/The 1975 - I'm In Love With You (Official Video) - The1975VEVO.mp3",
   },
   {
-    title: "About You / Robbers / Medicine (Medley)",
+    title: "About You / Robbers (Medley)",
     artist: "The 1975",
     src: "/songs/The 1975 __ About You - Robbers - An Encounter - I Always Wanna Die - Medicine - Head.Cars.Bending - Up And Drumming.mp3",
   },
   {
-    title: "It's Not Living (If It's Not With You)",
+    title: "It's Not Living",
     artist: "The 1975",
     src: "/songs/The 1975 ~ It's Not Living (If It's Not With You) Lyrics - heartbroke corner.mp3",
   },
@@ -44,12 +75,7 @@ const PLAYLIST: Song[] = [
     title: "The Man Who Can't Be Moved",
     artist: "The Script",
     src: "/songs/The Script - The Man Who Can’t Be Moved (Official Video) - TheScriptVEVO.mp3",
-  },
-  {
-    title: "It's Not Living (Guitar Loop Cover)",
-    artist: "The 1975",
-    src: "/songs/it's not living if it's not with you - the 1975 guitar loop cover - not so gently.mp3",
-  },
+  }
 ]
 
 export default function VibePlayer() {
@@ -60,20 +86,20 @@ export default function VibePlayer() {
   const [isHovered, setIsHovered] = useState(false)
 
   // State variables for draggable functionality
-  const [position, setPosition] = useState({ x: 24, y: 0 }) // Default to left-6, y will be updated on mount
+  const [position, setPosition] = useState({ x: 24, y: 0 }) 
   const [isDragging, setIsDragging] = useState(false)
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
 
   // Initialize position on component mount
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const initialY = window.innerHeight - 160; // Start at bottom (h-40 = ~160px when expanded)
+      const initialY = window.innerHeight - 160; 
       setPosition(prev => ({
         ...prev,
         y: Math.max(0, initialY)
       }));
     }
-  }, []); // Empty dependency array since we only set it once on mount
+  }, []); 
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [isInitialized, setIsInitialized] = useState(false)
@@ -86,7 +112,6 @@ export default function VibePlayer() {
 
   // Mouse event handlers for dragging
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    // Only respond to left mouse button (0)
     if (e.button !== 0) return;
     e.preventDefault();
     setIsDragging(true);
@@ -98,23 +123,14 @@ export default function VibePlayer() {
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!isDragging) return;
-
-    // Calculate new position with boundaries
     let newX = e.clientX - dragOffset.x;
     let newY = e.clientY - dragOffset.y;
-
-    // Add boundaries to prevent going off-screen
     const containerWidth = typeof window !== 'undefined' ? (window.innerWidth || document.documentElement.clientWidth) : 0;
     const containerHeight = typeof window !== 'undefined' ? (window.innerHeight || document.documentElement.clientHeight) : 0;
-
-    // Calculate boundaries based on the player size
-    const playerWidth = isHovered ? 320 : 56; // w-80 or w-14 in px
-    const playerHeight = isHovered ? 160 : 56; // approximate height
-
-    // Apply boundaries
+    const playerWidth = isHovered ? 320 : 56; 
+    const playerHeight = isHovered ? 160 : 56; 
     newX = Math.max(10, Math.min(containerWidth - playerWidth - 10, newX));
     newY = Math.max(10, Math.min(containerHeight - playerHeight - 10, newY));
-
     setPosition({ x: newX, y: newY });
   }, [isDragging, dragOffset, isHovered]);
 
@@ -122,9 +138,7 @@ export default function VibePlayer() {
     setIsDragging(false);
   }, []);
 
-  // Touch event handlers for mobile
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    e.preventDefault();
     setIsDragging(true);
     const touch = e.touches[0];
     setDragOffset({
@@ -135,27 +149,15 @@ export default function VibePlayer() {
 
   const handleTouchMove = useCallback((e: TouchEvent) => {
     if (!isDragging) return;
-
-    e.preventDefault(); // Prevent scrolling while dragging
-
     const touch = e.touches[0];
-
-    // Calculate new position with boundaries
     let newX = touch.clientX - dragOffset.x;
     let newY = touch.clientY - dragOffset.y;
-
-    // Add boundaries to prevent going off-screen
     const containerWidth = typeof window !== 'undefined' ? (window.innerWidth || document.documentElement.clientWidth) : 0;
     const containerHeight = typeof window !== 'undefined' ? (window.innerHeight || document.documentElement.clientHeight) : 0;
-
-    // Calculate boundaries based on the player size
-    const playerWidth = isHovered ? 320 : 56; // w-80 or w-14 in px
-    const playerHeight = isHovered ? 160 : 56; // approximate height
-
-    // Apply boundaries
+    const playerWidth = isHovered ? 320 : 56; 
+    const playerHeight = isHovered ? 160 : 56; 
     newX = Math.max(10, Math.min(containerWidth - playerWidth - 10, newX));
     newY = Math.max(10, Math.min(containerHeight - playerHeight - 10, newY));
-
     setPosition({ x: newX, y: newY });
   }, [isDragging, dragOffset, isHovered]);
 
@@ -163,7 +165,6 @@ export default function VibePlayer() {
     setIsDragging(false);
   }, []);
 
-  // Add event listeners when dragging starts
   useEffect(() => {
     if (isDragging) {
       window.addEventListener('mousemove', handleMouseMove);
@@ -171,7 +172,6 @@ export default function VibePlayer() {
       window.addEventListener('touchmove', handleTouchMove, { passive: false });
       window.addEventListener('touchend', handleTouchEnd);
     }
-
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
@@ -182,22 +182,17 @@ export default function VibePlayer() {
 
   const initAudio = useCallback(() => {
     if (audioRef.current) return
-
     audioRef.current = new Audio(PLAYLIST[currentSongIndex].src)
     audioRef.current.volume = 0.4
-
     const audio = audioRef.current
-
     const updateProgress = () => {
       if (audio.duration) {
         setProgress((audio.currentTime / audio.duration) * 100)
       }
     }
-
     const handleEnded = () => {
       setCurrentSongIndex((prev) => (prev + 1) % PLAYLIST.length)
     }
-
     audio.addEventListener("timeupdate", updateProgress)
     audio.addEventListener("ended", handleEnded)
     setIsInitialized(true)
@@ -207,9 +202,6 @@ export default function VibePlayer() {
     return () => {
       if (audioRef.current) {
         audioRef.current.pause()
-        // We can't easily remove specific listeners if functions are defined inside initAudio
-        // But since component unmounts, it's mostly fine.
-        // Better to move functions out or use refs.
       }
     }
   }, [])
@@ -225,22 +217,17 @@ export default function VibePlayer() {
     }
   }, [isPlaying, isInitialized])
 
-  // System-wide interaction-based autoplay
   useEffect(() => {
     const startAudioOnInteract = () => {
       if (!hasInteracted) {
         setHasInteracted(true)
-        if (!isInitialized) {
-          initAudio()
-        }
+        if (!isInitialized) initAudio()
         setIsPlaying(true)
       }
     }
-
     window.addEventListener('click', startAudioOnInteract, { once: true })
     window.addEventListener('scroll', startAudioOnInteract, { once: true })
     window.addEventListener('keydown', startAudioOnInteract, { once: true })
-
     return () => {
       window.removeEventListener('click', startAudioOnInteract)
       window.removeEventListener('scroll', startAudioOnInteract)
@@ -291,18 +278,13 @@ export default function VibePlayer() {
         top: `${position.y}px`,
         transform: isDragging ? 'scale(1.05)' : 'scale(1)',
         transition: isDragging ? 'none' : 'transform 0.2s ease',
-        width: isHovered ? '320px' : '56px' // Explicitly set width for boundary calculations
+        width: isHovered ? '320px' : '56px' 
       }}
-      onMouseEnter={() => {
-        setIsHovered(true)
-        // Optional: Init on hover to prepare
-        // initAudio()
-      }}
+      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
     >
-      {/* Liquid Glass Container */}
       <div className={`
         relative overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10
         shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] rounded-2xl p-4
@@ -310,7 +292,6 @@ export default function VibePlayer() {
         ${isHovered ? "w-80" : "w-14 h-14 p-0 rounded-full flex items-center justify-center cursor-pointer"}
       `}>
         
-        {/* Compact Mode (Icon only) */}
         {!isHovered && (
           <div className="relative w-full h-full flex items-center justify-center" onClick={() => setIsHovered(true)}>
              <div className={`absolute inset-0 bg-amber-500/20 rounded-full ${isPlaying ? 'animate-ping' : ''}`} />
@@ -318,16 +299,13 @@ export default function VibePlayer() {
           </div>
         )}
 
-        {/* Expanded Mode */}
         <div className={`transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0 hidden"}`}>
-          {/* Song Info */}
           <div className="flex items-start justify-between mb-3">
             <div className="overflow-hidden">
               <h3 className="text-white font-bold text-sm truncate w-48">{PLAYLIST[currentSongIndex].title}</h3>
               <p className="text-gray-400 text-xs truncate">{PLAYLIST[currentSongIndex].artist}</p>
             </div>
             
-            {/* Visualizer Bars */}
             <div className="flex items-end gap-1 h-6">
               {[...Array(4)].map((_, i) => (
                 <div 
@@ -342,7 +320,6 @@ export default function VibePlayer() {
             </div>
           </div>
 
-          {/* Progress Bar */}
           <div className="w-full bg-white/10 rounded-full h-1 mb-4">
             <div 
               className="bg-linear-to-r from-amber-400 to-orange-500 h-1 rounded-full transition-all duration-300"
@@ -350,7 +327,6 @@ export default function VibePlayer() {
             />
           </div>
 
-          {/* Controls */}
           <div className="flex items-center justify-between">
             <button onClick={toggleMute} className="text-gray-400 hover:text-white transition-colors">
               {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
@@ -373,11 +349,10 @@ export default function VibePlayer() {
               </button>
             </div>
              
-             <div className="w-4" /> {/* Spacer to balance layout */}
+             <div className="w-4" /> 
           </div>
         </div>
 
-        {/* Glass Reflection Effect */}
         <div className="absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-linear-to-r from-transparent to-white opacity-10 pointer-events-none" />
       </div>
 
