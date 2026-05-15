@@ -116,7 +116,7 @@ export default function About() {
                <div ref={iconRef as React.RefObject<HTMLDivElement>} className="hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10">
                   <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-[#00d4ff]/20 grayscale hover:grayscale-0 transition-all duration-500 shadow-[0_0_30px_rgba(0,212,255,0.2)]">
                     <Image 
-                      src="/profile.png" 
+                      src="/profile5.png" 
                       alt="Rendi Saputra" 
                       fill 
                       className="object-cover opacity-80 hover:opacity-100 transition-opacity duration-500"

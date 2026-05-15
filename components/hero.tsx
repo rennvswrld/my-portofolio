@@ -172,7 +172,7 @@ export default function Hero() {
                 
                 <div className="cursor-target h-full w-full rounded-[24px] overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-700">
                   <img 
-                    src="/profile.png" 
+                    src="/profile3.png" 
                     alt="Rendi Saputra" 
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
