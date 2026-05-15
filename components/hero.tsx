@@ -125,17 +125,17 @@ export default function Hero() {
 
               <div ref={socialLinksRef} className="cursor-target flex items-center gap-4">
                 <SocialLink 
-                  href="https://github.com/RendiSaputra"
+                  href="https://github.com/rennvswrld"
                   icon={<Github size={22} />}
                   ariaLabel="Visit Rendi Saputra's GitHub Profile"
                 />
                 <SocialLink
-                  href="https://www.linkedin.com/in/rendi-saputra"
+                  href="https://www.linkedin.com/in/rendi-saputra-020aa4340"
                   icon={<Linkedin size={22} />}
                   ariaLabel="Visit Rendi Saputra's LinkedIn Profile"
                 />
                 <SocialLink
-                  href="mailto:rendisaputra@gmail.com"
+                  href="mailto:rendigans350@gmail.com"
                   icon={<Mail size={22} />}
                   ariaLabel="Contact Rendi Saputra via Email"
                   isEmail
