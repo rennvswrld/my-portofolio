@@ -6,7 +6,9 @@ import {
   Network,
   Cpu,
   Code2,
-  Megaphone
+  Megaphone,
+  Smartphone,
+  ExternalLink
 } from "lucide-react";
 import { useScrollAnimation, useStaggerAnimation } from "@/lib/gsap-utils";
 import { useLanguage } from "@/components/LanguageContext";
@@ -29,16 +31,8 @@ export default function Projects() {
     network: <Network className="w-4 h-4" />,
     web: <Code2 className="w-4 h-4" />,
     iot: <Cpu className="w-4 h-4" />,
+    ai: <Smartphone className="w-4 h-4" />,
     activity: <Megaphone className="w-4 h-4" />
-  };
-
-  // Image Mapping (Bisa kamu sesuaikan dengan nama file gambarmu nanti)
-  const imageMapping: any = {
-    0: "/proj-ospf.png",    // Gambar 1: Topologi OSPF & BGP
-    1: "/proj-web.png",     // Gambar 2: Web Django Smart City
-    2: "/proj-iot.jpg",     // Gambar 3: Skema RFID MQTT
-    3: "/proj-lab.jpeg",    // Gambar 4: Cisco Lab (Ganti "/proj-lab.jpg" nanti kalau fotonya udah ada)
-    4: "/proj-seminar.jpeg"      // Gambar 5: Seminar (Ganti "/proj-seminar.jpg" nanti kalau fotonya udah ada)
   };
 
   return (
@@ -85,30 +79,47 @@ export default function Projects() {
         {/* Projects Grid */}
         <div ref={projectsGridRef as React.RefObject<HTMLDivElement>}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project: any, index: number) => {
-              // Jika data di-filter, index bisa acak. Kita gunakan fallback logic.
-              // Mencocokkan index statis untuk memuat gambar yang tepat
-              const imgIndex = t.projects.items.findIndex((p:any) => p.title === project.title);
-              
+            {filteredProjects.map((project: any) => {
               return (
-                <div key={index} className="group relative h-full">
+                <div key={project.title} className="group relative h-full">
                   <div className="cursor-target relative h-full bg-[#111] rounded-3xl overflow-hidden border border-white/5 hover:border-[#00d4ff]/40 transition-all duration-500 flex flex-col shadow-2xl">
                     
                     {/* Image Section */}
                     <div className="relative aspect-video overflow-hidden">
-                      <div className="absolute inset-0 bg-[#222] animate-pulse" />
-                      <Image
-                        src={imageMapping[imgIndex] || "/p1.jpg"}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
-                      />
+                      {project.image ? (
+                        <>
+                          <div className="absolute inset-0 bg-[#222] animate-pulse" />
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                          />
+                        </>
+                      ) : (
+                        // Placeholder bertema selama gambar proyek belum ada
+                        <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(0,212,255,0.25),transparent_60%),linear-gradient(135deg,#0b1a22,#111)]">
+                          <div className="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(0,212,255,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(0,212,255,0.3)_1px,transparent_1px)] bg-[size:24px_24px]" />
+                          <div className="relative text-[#00d4ff] scale-[3] opacity-70 transition-transform duration-700 group-hover:scale-[3.4]">
+                            {categoryIcons[project.category]}
+                          </div>
+                        </div>
+                      )}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-80" />
                       
                       {/* Category Tag */}
                       <div className="absolute top-4 left-4 px-3 py-1 bg-black/60 backdrop-blur-md border border-white/10 rounded-full flex items-center gap-2 text-[10px] font-bold text-[#00d4ff] uppercase tracking-widest">
                         {categoryIcons[project.category]} {project.category}
                       </div>
+
+                      {/* Status Badge */}
+                      {project.status && (
+                        <div className="absolute top-4 right-4 px-3 py-1 bg-[#00d4ff]/15 backdrop-blur-md border border-[#00d4ff]/40 rounded-full flex items-center gap-2 text-[10px] font-bold text-[#00d4ff] uppercase tracking-widest">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#00d4ff] animate-pulse" />
+                          {t.projects.statusLabels?.[project.status] ?? project.status}
+                        </div>
+                      )}
                     </div>
 
                     {/* Content Section */}
@@ -119,6 +130,17 @@ export default function Projects() {
                       <p className="text-gray-400 text-sm leading-relaxed mb-6">
                         {project.desc}
                       </p>
+
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="cursor-target inline-flex w-fit items-center gap-2 mb-6 text-sm font-bold text-[#00d4ff] hover:underline underline-offset-4"
+                        >
+                          {t.projects.viewLive ?? "View Live"} <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
 
                       {/* Tech Stack */}
                       <div className="mt-auto pt-6 border-t border-white/5">

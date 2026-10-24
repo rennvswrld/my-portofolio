@@ -210,7 +210,7 @@ export default function VibePlayer() {
     if (!isInitialized) return
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(e => console.log("Audio play failed:", e))
+        audioRef.current.play().catch(() => setIsPlaying(false))
       } else {
         audioRef.current.pause()
       }
@@ -225,12 +225,11 @@ export default function VibePlayer() {
         setIsPlaying(true)
       }
     }
-    window.addEventListener('click', startAudioOnInteract, { once: true })
-    window.addEventListener('scroll', startAudioOnInteract, { once: true })
+    // Scroll TIDAK dihitung browser sebagai interaksi, jadi tidak dipakai untuk memicu musik
+    window.addEventListener('pointerdown', startAudioOnInteract, { once: true })
     window.addEventListener('keydown', startAudioOnInteract, { once: true })
     return () => {
-      window.removeEventListener('click', startAudioOnInteract)
-      window.removeEventListener('scroll', startAudioOnInteract)
+      window.removeEventListener('pointerdown', startAudioOnInteract)
       window.removeEventListener('keydown', startAudioOnInteract)
     }
   }, [hasInteracted, isInitialized, initAudio])
@@ -242,7 +241,7 @@ export default function VibePlayer() {
       audioRef.current.src = PLAYLIST[currentSongIndex].src
       audioRef.current.load()
       if (wasPlaying) {
-        audioRef.current.play()
+        audioRef.current.play().catch(() => setIsPlaying(false))
       }
     }
   }, [currentSongIndex, isInitialized])

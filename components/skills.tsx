@@ -28,7 +28,7 @@ export default function Skills() {
       title: t.skills.cat1.title,
       description: t.skills.cat1.desc,
       // Tambahkan Red Hat Enterprise Linux
-      skills: ["Cisco", "Mikrotik", "Red Hat (RHEL)", "Linux Admin", "Network Security"],
+      skills: ["Cisco", "CCNP Enterprise", "Cisco CML", "Mikrotik", "Red Hat (RHEL)", "Linux Admin", "Network Security", "Ethical Hacking"],
     },
     {
       id: "ai",
@@ -36,7 +36,7 @@ export default function Skills() {
       title: t.skills.cat2.title,
       description: t.skills.cat2.desc,
       // Tambahkan Django
-      skills: ["Python", "Django", "FastAPI", "PostgreSQL", "TensorFlow", "Computer Vision"],
+      skills: ["Python", "Django", "FastAPI", "Flutter", "React", "PostgreSQL", "TensorFlow", "Computer Vision", "Gemini API", "Machine Learning"],
     },
     {
       id: "iot",
@@ -44,7 +44,7 @@ export default function Skills() {
       title: t.skills.cat3.title,
       description: t.skills.cat3.desc,
       // Tambahkan Google Cloud
-      skills: ["Google Cloud (GCP)", "Docker", "Arduino/ESP32", "MQTT Protocol", "Next.js"],
+      skills: ["Google Cloud (GCP)", "AWS", "Cloudflare Workers", "Docker", "Supabase", "MongoDB", "Arduino/ESP32", "MQTT Protocol", "Next.js"],
     },
   ]
 

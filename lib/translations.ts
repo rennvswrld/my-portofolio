@@ -1,15 +1,9 @@
 export type Language = 'id' | 'en' | 'jp';
 
 export const languages = [
-  { code: 'id', label: 'Indonesia', native: 'Indonesia' },
   { code: 'en', label: 'English', native: 'English' },
-  { code: 'cn', label: 'Chinese', native: '中文 (Chinese)' },
-  { code: 'kr', label: 'Korean', native: '한국어 (Korean)' },
+  { code: 'id', label: 'Indonesia', native: 'Indonesia' },
   { code: 'jp', label: 'Japanese', native: '日本語 (Japanese)' },
-  { code: 'th', label: 'Thailand', native: 'ไทย (Thailand)' },
-  { code: 'vn', label: 'Vietnam', native: 'Tiếng Việt (Vietnam)' },
-  { code: 'kh', label: 'Cambodia', native: 'ភាសាខ្មែរ (Cambodia)' },
-  { code: 'ru', label: 'Russia', native: 'Русский (Russia)' },
 ];
 
 export const translations = {
@@ -31,9 +25,9 @@ export const translations = {
     skills: {
       title: 'Keahlian &', subtitle: 'Teknologi',
       desc: 'Alat dan teknologi yang saya gunakan untuk membangun sistem digital dan infrastruktur cerdas.',
-      cat1: { title: 'Infrastruktur Jaringan', desc: 'Desain & Konfigurasi Routing/Switching (Cisco CCNA).' },
-      cat2: { title: 'Development & AI', desc: 'Membangun aplikasi backend Django dan implementasi AI.' },
-      cat3: { title: 'Cloud & Linux', desc: 'Implementasi Google Cloud dan Administrasi Red Hat Enterprise Linux.' }
+      cat1: { title: 'Infrastruktur Jaringan', desc: 'Desain & konfigurasi routing/switching (CCNA hingga CCNP Enterprise) serta keamanan jaringan.' },
+      cat2: { title: 'Development & AI', desc: 'Membangun backend, aplikasi mobile, dan implementasi model AI.' },
+      cat3: { title: 'Cloud & Linux', desc: 'Cloud (GCP, AWS, Cloudflare), administrasi RHEL, dan perangkat IoT.' }
     },
     workflow: {
       title: 'Alur Kerja',
@@ -55,37 +49,59 @@ export const translations = {
     projects: {
       title: 'Featured Projects', subtitle: '& Activities',
       desc: 'Implementasi nyata dari infrastruktur jaringan, sistem terintegrasi, dan kontribusi edukasi digital.',
-      filters: { all: 'Semua', network: 'Jaringan', web: 'Web Django', iot: 'IoT System', activity: 'Aktivitas' },
+      filters: { all: 'Semua', network: 'Jaringan', web: 'Web Django', iot: 'IoT System', ai: 'AI & Mobile', activity: 'Aktivitas' },
+      statusLabels: { ongoing: 'Sedang Dikembangkan' },
+      viewLive: 'Lihat Live',
       items: [
-        { 
+        {
+          title: 'BicaraUntukku',
+          category: 'ai',
+          desc: 'Aplikasi penerjemah video bahasa isyarat BISINDO menjadi teks dan suara, dikembangkan bersama tim. Sudah dideploy di server kampus Polinela.',
+          tech: ['Flutter', 'FastAPI', 'React', 'Gemini AI'],
+          link: 'https://bicarauntukku.iet-polinela.my.id'
+        },
+        {
+          title: 'Monitoring Energi Listrik Ruang Kampus',
+          category: 'iot',
+          desc: 'Sistem pengukuran konsumsi listrik per ruangan kampus menggunakan PZEM-004T, dilengkapi prediksi berbasis machine learning dan dashboard web. Proyek Mandiri, proposal sudah ACC.',
+          tech: ['ESP32', 'PZEM-004T', 'Machine Learning', 'MongoDB', 'JavaScript'],
+          status: 'ongoing'
+        },
+        {
+          title: 'Koordinator Lapangan — International Innovation 4 Force',
+          category: 'activity',
+          desc: 'Koordinator lapangan panitia cabang IoT Prototype Competition, mulai dari Technical Meeting Final hingga koordinasi tim finalis.',
+          tech: ['Leadership', 'Event Management', 'IoT']
+        },
+        {
           title: 'Global Network Infrastructure', 
           category: 'network', 
           desc: 'Merancang arsitektur jaringan skala besar antar negara dengan Multi-Area OSPF (40 router) dan BGP. Termasuk manajemen bandwidth dan redundansi jalur.', 
-          tech: ['Cisco Packet Tracer', 'OSPF', 'BGP'] 
+          tech: ['Cisco Packet Tracer', 'OSPF', 'BGP'], image: '/proj-ospf.png' 
         },
         { 
           title: 'Smart City Issue Reporting', 
           category: 'web', 
           desc: 'Aplikasi berbasis web untuk warga melaporkan masalah kota secara terstruktur dan transparan.', 
-          tech: ['Django', 'Python', 'Bootstrap'] 
+          tech: ['Django', 'Python', 'Bootstrap'], image: '/proj-web.png' 
         },
         { 
           title: 'Smart Gate RFID System', 
           category: 'iot', 
           desc: 'Sistem gerbang pintar berbasis IoT dengan protokol MQTT dan Database Time-Series untuk monitoring real-time.', 
-          tech: ['MQTT', 'RFID', 'ESP8266'] 
+          tech: ['MQTT', 'RFID', 'ESP8266'], image: '/proj-iot.jpg' 
         },
         { 
           title: 'Cisco Configuration Lab', 
           category: 'network', 
           desc: 'Implementasi Inter-VLAN Routing, Trunking, dan DHCP Server pada perangkat fisik Cisco untuk konektivitas end-user.', 
-          tech: ['Switching', 'VLAN', 'NAT/PAT'] 
+          tech: ['Switching', 'VLAN', 'NAT/PAT'], image: '/proj-lab.jpeg' 
         },
         { 
           title: 'Cyber Hygiene Awareness', 
           category: 'activity', 
           desc: 'Speaker seminar keamanan siber di SMAN 1 Kedondong dan pengembangan E-book literasi digital.', 
-          tech: ['Public Speaking', 'Security'] 
+          tech: ['Public Speaking', 'Security'], image: '/proj-seminar.jpeg' 
         }
       ]
     },
@@ -116,9 +132,9 @@ export const translations = {
     skills: {
       title: 'Skills &', subtitle: 'Technologies',
       desc: 'Tools and technologies I use to build digital infrastructure and intelligent systems.',
-      cat1: { title: 'Network Infrastructure', desc: 'Routing/Switching Design & Config (Cisco CCNA).' },
-      cat2: { title: 'Development & AI', desc: 'Building Django backend apps and AI implementation.' },
-      cat3: { title: 'Cloud & Linux', desc: 'Google Cloud Platform and Red Hat Enterprise Linux Administration.' }
+      cat1: { title: 'Network Infrastructure', desc: 'Routing/switching design & configuration (CCNA to CCNP Enterprise) and network security.' },
+      cat2: { title: 'Development & AI', desc: 'Building backends, mobile apps, and AI model implementations.' },
+      cat3: { title: 'Cloud & Linux', desc: 'Cloud (GCP, AWS, Cloudflare), RHEL administration, and IoT devices.' }
     },
     workflow: {
       title: 'My Workflow',
@@ -140,13 +156,18 @@ export const translations = {
     projects: {
       title: 'Featured Projects', subtitle: '& Activities',
       desc: 'Real-world implementation of network infrastructures, integrated systems, and digital education.',
-      filters: { all: 'All', network: 'Network', web: 'Django Web', iot: 'IoT System', activity: 'Activities' },
+      filters: { all: 'All', network: 'Network', web: 'Django Web', iot: 'IoT System', ai: 'AI & Mobile', activity: 'Activities' },
+      statusLabels: { ongoing: 'In Development' },
+      viewLive: 'View Live',
       items: [
-        { title: 'Global Network Infrastructure', category: 'network', desc: 'Designed large-scale network architecture via Multi-Area OSPF and BGP protocols.', tech: ['Packet Tracer', 'OSPF', 'BGP'] },
-        { title: 'Smart City Issue Reporting', category: 'web', desc: 'Web application for citizens to report urban issues structurally.', tech: ['Django', 'Python', 'Bootstrap'] },
-        { title: 'Smart Gate RFID System', category: 'iot', desc: 'IoT smart gate system utilizing MQTT and Time-Series Database.', tech: ['MQTT', 'RFID', 'ESP8266'] },
-        { title: 'Cisco Configuration Lab', category: 'network', desc: 'Implementation of Inter-VLAN Routing, Trunking, and DHCP on Cisco hardware.', tech: ['Switching', 'VLAN', 'NAT/PAT'] },
-        { title: 'Cyber Hygiene Awareness', category: 'activity', desc: 'Cyber security seminar speaker and digital literacy E-book development.', tech: ['Public Speaking', 'Security'] }
+        { title: 'BicaraUntukku', category: 'ai', desc: 'An app that translates BISINDO (Indonesian Sign Language) videos into text and speech, built as a team. Deployed on the Polinela campus server.', tech: ['Flutter', 'FastAPI', 'React', 'Gemini AI'], link: 'https://bicarauntukku.iet-polinela.my.id' },
+        { title: 'Campus Room Energy Monitoring', category: 'iot', desc: 'Per-room electricity monitoring for campus buildings using PZEM-004T sensors, with machine learning predictions and a web dashboard. Independent Project, proposal approved.', tech: ['ESP32', 'PZEM-004T', 'Machine Learning', 'MongoDB', 'JavaScript'], status: 'ongoing' },
+        { title: 'Field Coordinator — International Innovation 4 Force', category: 'activity', desc: 'Field coordinator on the committee of the IoT Prototype Competition branch, from the Final Technical Meeting to finalist team coordination.', tech: ['Leadership', 'Event Management', 'IoT'] },
+        { title: 'Global Network Infrastructure', category: 'network', desc: 'Designed large-scale network architecture via Multi-Area OSPF and BGP protocols.', tech: ['Packet Tracer', 'OSPF', 'BGP'], image: '/proj-ospf.png' },
+        { title: 'Smart City Issue Reporting', category: 'web', desc: 'Web application for citizens to report urban issues structurally.', tech: ['Django', 'Python', 'Bootstrap'], image: '/proj-web.png' },
+        { title: 'Smart Gate RFID System', category: 'iot', desc: 'IoT smart gate system utilizing MQTT and Time-Series Database.', tech: ['MQTT', 'RFID', 'ESP8266'], image: '/proj-iot.jpg' },
+        { title: 'Cisco Configuration Lab', category: 'network', desc: 'Implementation of Inter-VLAN Routing, Trunking, and DHCP on Cisco hardware.', tech: ['Switching', 'VLAN', 'NAT/PAT'], image: '/proj-lab.jpeg' },
+        { title: 'Cyber Hygiene Awareness', category: 'activity', desc: 'Cyber security seminar speaker and digital literacy E-book development.', tech: ['Public Speaking', 'Security'], image: '/proj-seminar.jpeg' }
       ]
     },
     contact: {
